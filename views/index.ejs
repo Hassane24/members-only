@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members Only Clubhouse</title>
+</head>
+
+<body>
+    <h1>Welcome to the Exclusive Clubhouse</h1>
+
+    <!-- Navigation / Auth Status -->
+    <nav>
+        <% if (currentUser) { %>
+            <p>Logged in as: <strong>
+                    <%= currentUser.first_name %>
+                        <%= currentUser.last_name %>
+                </strong></p>
+
+            <% if (!currentUser.membership_status) { %>
+                <p><a href="/join-club">Join the Secret Club</a></p>
+                <% } else { %>
+                    <p><em> You are a Club Member!</em></p>
+                    <% } %>
+
+                        <a href="/create-message">Create a New Message</a> |
+                        <a href="/log-out">Log Out</a>
+                        <% } else { %>
+                            <a href="/log-in">Log In</a> |
+                            <a href="/sign-up">Sign Up</a>
+                            <% } %>
+    </nav>
+
+    <hr>
+
+    <h2>Clubhouse Messages</h2>
+
+    <% if (messages && messages.length> 0) { %>
+        <ul>
+            <% messages.forEach(message=> { %>
+                <li style="margin-bottom: 20px;">
+                    <h3>
+                        <%= message.title %>
+                    </h3>
+                    <p>
+                        <%= message.text %>
+                    </p>
+
+                    <!-- Conditional Author & Date Display -->
+                    <% if (currentUser && (currentUser.membership_status || currentUser.is_admin)) { %>
+                        <small>
+                            <strong>Posted by:</strong>
+                            <%= message.first_name %>
+                                <%= message.last_name %>
+                                    | <strong>Date:</strong>
+                                    <%= new Date(message.timestamp).toLocaleString() %>
+                        </small>
+                        <% } else { %>
+                            <small><em>Author and date are hidden. Join the club to see who posted this!</em></small>
+                            <% } %>
+
+                                <!-- Delete Action for Admins -->
+                                <% if (currentUser && currentUser.is_admin) { %>
+                                    <br>
+                                    <form action="/messages/<%= message.id %>/delete" method="POST"
+                                        style="margin-top: 5px;">
+                                        <button type="submit"
+                                            onclick="return confirm('Are you sure you want to delete this post?')">
+                                            Delete Message
+                                        </button>
+                                    </form>
+                                    <% } %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } else { %>
+            <p>No messages found. Be the first to create one!</p>
+            <% } %>
+</body>
+
+</html>
