@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Message - Members Only</title>
+</head>
+
+<body>
+    <h1>Create a New Message</h1>
+
+    <form action="/create-message" method="POST">
+        <div>
+            <label for="title">Title:</label><br>
+            <input type="text" name="title" id="title" style="width: 350px;" required>
+        </div>
+        <br>
+        <div>
+            <label for="text">Message Text:</label><br>
+            <textarea name="text" id="text" rows="6" cols="45" required></textarea>
+        </div>
+        <br>
+        <button type="submit">Submit Message</button>
+    </form>
+
+    <p><a href="/">Back to Home</a></p>
+</body>
+
+</html>

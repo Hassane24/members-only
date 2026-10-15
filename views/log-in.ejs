@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - Members Only</title>
+</head>
+
+<body>
+    <h1>Log In</h1>
+
+    <form action="/log-in" method="POST">
+        <div>
+            <label for="username">Email (Username):</label><br>
+            <input type="email" name="username" id="username" required>
+        </div>
+        <br>
+        <div>
+            <label for="password">Password:</label><br>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <br>
+        <button type="submit">Log In</button>
+    </form>
+
+    <p>Don't have an account? <a href="/sign-up">Sign Up</a></p>
+    <p><a href="/">Back to Home</a></p>
+</body>
+
+</html>

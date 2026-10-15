@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Club - Members Only</title>
+</head>
+
+<body>
+    <h1>Join the Secret Clubhouse</h1>
+    <p>Enter the secret passcode to reveal author names and publication dates across all messages!</p>
+
+    <% if (locals.error && error) { %>
+        <p style="color: red;">
+            <%= error %>
+        </p>
+        <% } %>
+
+            <form action="/join-club" method="POST">
+                <div>
+                    <label for="passcode">Secret Passcode:</label><br>
+                    <input type="password" name="passcode" id="passcode" required>
+                </div>
+                <br>
+                <button type="submit">Unlock Membership</button>
+            </form>
+
+            <p><a href="/">Back to Home</a></p>
+</body>
+
+</html>

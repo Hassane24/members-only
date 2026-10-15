@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Members Only</title>
+</head>
+<body>
+  <h1>Sign Up</h1>
+
+  <!-- Display Validation Errors if any -->
+  <% if (locals.errors && errors.length > 0) { %>
+    <ul style="color: red;">
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <form action="/sign-up" method="POST">
+    <div>
+      <label for="first_name">First Name:</label><br>
+      <input type="text" name="first_name" id="first_name" required>
+    </div>
+    <br>
+    <div>
+      <label for="last_name">Last Name:</label><br>
+      <input type="text" name="last_name" id="last_name" required>
+    </div>
+    <br>
+    <div>
+      <label for="username">Email (Username):</label><br>
+      <input type="email" name="username" id="username" required>
+    </div>
+    <br>
+    <div>
+      <label for="password">Password:</label><br>
+      <input type="password" name="password" id="password" required>
+    </div>
+    <br>
+    <div>
+      <label for="confirmPassword">Confirm Password:</label><br>
+      <input type="password" name="confirmPassword" id="confirmPassword" required>
+    </div>
+    <br>
+    <div>
+      <label>
+        <input type="checkbox" name="is_admin" value="on"> Register as Admin (Optional)
+      </label>
+    </div>
+    <br>
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <p><a href="/">Back to Home</a> | Already have an account? <a href="/log-in">Log In</a></p>
+</body>
+</html>
